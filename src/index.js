@@ -54,6 +54,7 @@ ReactDOM.render(<AuthorQuiz {...state} />, document.getElementById("root"));
 registerServiceWorker();
 
 // helper functions
+// refer to https://medium.freecodecamp.org/reduce-f47a7da511a9 for example of using the reduce function...
 function getTurnData(authors) {
   // build the list of all books
   const allBooks = authors.reduce(function(accumulator, currentValue, i) {
