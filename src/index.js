@@ -56,18 +56,18 @@ registerServiceWorker();
 // helper functions
 function getTurnData(authors) {
   // build the list of all books
-  const allBooks = authors.reduce(function(resultArray, author, i) {
+  const allBooks = authors.reduce(function(accumulator, currentValue, i) {
     console.log("in the reduce function...");
 
     console.log(
-      "resultArray is the array constructed from the authors books... ",
-      resultArray
+      "accumulator is the array constructed from the authors books... ",
+      accumulator
     );
-    console.log("author  ", author);
+    console.log("currentValue is the author...  ", currentValue);
     console.log("i is the array index...  ", i);
 
-    return resultArray.concat(author.books);
-  }, []);
+    return accumulator.concat(currentValue.books);
+  }, []); // <== note the  accumulator defaults to an empty array...
 
   // shuffle the list into a random order, then grab the fitst 2 books
   const fourRandomBooks = shuffle(allBooks).slice(0, 4);

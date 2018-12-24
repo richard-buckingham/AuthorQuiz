@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import logo from "./logo.svg";
 import "./AuthorQuiz.css";
 import "./bootstrap.min.css";
