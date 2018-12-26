@@ -9,12 +9,16 @@ import Turn from "./components/Turn";
 import Continue from "./components/Continue";
 import Footer from "./components/Footer";
 
-function AuthorQuiz({ turnData }) {
+function AuthorQuiz({ turnData, highlight, onAnswerSelected }) {
   console.log("turnData = ", turnData);
   return (
     <div className="container-fluid">
       <Hero />
-      <Turn {...turnData} />
+      <Turn
+        {...turnData}
+        highlight={highlight}
+        onAnswerSelected={onAnswerSelected}
+      />
       <Continue />
       <Footer />
     </div>

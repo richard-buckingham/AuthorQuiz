@@ -47,10 +47,19 @@ const authors = [
 ];
 
 const state = {
-  turnData: getTurnData(authors)
+  turnData: getTurnData(authors),
+  highlight: ""
 };
 
-ReactDOM.render(<AuthorQuiz {...state} />, document.getElementById("root"));
+function render() {
+  ReactDOM.render(
+    <AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />,
+    document.getElementById("root")
+  );
+}
+
+// call render when the app is first loaded
+render();
 registerServiceWorker();
 
 // helper functions
@@ -79,4 +88,19 @@ function getTurnData(authors) {
     books: fourRandomBooks,
     author: authors.find(author => author.books.some(title => title === answer))
   };
+}
+
+function onAnswerSelected(selectedAnswer) {
+  console.log(`selectedAnswer = ${selectedAnswer}`);
+  console.log(`state =`, state);
+  // is the user's answer correct or incorrect?
+  const isCorrect = state.turnData.author.books.some(
+    book => book === selectedAnswer
+  );
+  console.log(`isCorrect =`, isCorrect);
+
+  // update the highlight property of state
+  state.highlight = isCorrect ? "correct" : "wrong";
+  // call render as we have updated the app's state
+  render();
 }
