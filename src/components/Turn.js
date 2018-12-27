@@ -3,14 +3,14 @@ import Book from "./Book";
 import PropTypes from "prop-types";
 
 function Turn({ author, books, highlight, onAnswerSelected }) {
-  console.log(`in Turn component, highlight = ${highlight}`);
+  //console.log(`in Turn component, highlight = ${highlight}`);
   function highlightToBgColor(highlight) {
     const mapping = {
       none: "",
       correct: "green",
       wrong: "red"
     };
-    console.log(`mapping[highlight] = ${mapping[highlight]}`);
+    //console.log(`mapping[highlight] = ${mapping[highlight]}`);
     return mapping[highlight];
   }
 

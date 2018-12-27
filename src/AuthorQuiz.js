@@ -10,7 +10,7 @@ import Continue from "./components/Continue";
 import Footer from "./components/Footer";
 
 function AuthorQuiz({ turnData, highlight, onAnswerSelected }) {
-  console.log("turnData = ", turnData);
+  //console.log("turnData = ", turnData);
   return (
     <div className="container-fluid">
       <Hero />
