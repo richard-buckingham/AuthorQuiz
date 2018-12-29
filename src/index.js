@@ -1,9 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import AuthorQuiz from "./AuthorQuiz";
+import { BrowserRouter, Route } from "react-router-dom";
+
 import registerServiceWorker from "./registerServiceWorker";
 import { shuffle, sample } from "underscore";
+
+import "./index.css";
+
+// my components
+import AuthorQuiz from "./AuthorQuiz";
+import AddAuthorForm from "./components/AddAuthorForm";
 
 const authors = [
   {
@@ -51,9 +57,19 @@ const state = {
   highlight: ""
 };
 
+// Create an App react component to render our application
+function App() {
+  return <AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />;
+}
+
 function render() {
   ReactDOM.render(
-    <AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />,
+    <BrowserRouter>
+      <React.Fragment>
+        <Route exact path="/" component={App} />
+        <Route path="/add" component={AddAuthorForm} />
+      </React.Fragment>
+    </BrowserRouter>,
     document.getElementById("root")
   );
 }
@@ -67,14 +83,14 @@ registerServiceWorker();
 function getTurnData(authors) {
   // build the list of all books
   const allBooks = authors.reduce(function(accumulator, currentValue, i) {
-    console.log("in the reduce function...");
+    //console.log("in the reduce function...");
 
-    console.log(
-      "accumulator is the array constructed from the authors books... ",
-      accumulator
-    );
-    console.log("currentValue is the author...  ", currentValue);
-    console.log("i is the array index...  ", i);
+    //console.log(
+    //  "accumulator is the array constructed from the authors books... ",
+    //  accumulator
+    //);
+    //console.log("currentValue is the author...  ", currentValue);
+    //console.log("i is the array index...  ", i);
 
     return accumulator.concat(currentValue.books);
   }, []); // <== note the  accumulator defaults to an empty array...
