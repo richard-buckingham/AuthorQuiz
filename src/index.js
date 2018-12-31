@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, withRouter } from "react-router-dom";
 
 import registerServiceWorker from "./registerServiceWorker";
 import { shuffle, sample } from "underscore";
@@ -62,12 +62,33 @@ function App() {
   return <AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />;
 }
 
+// The sole purpose of this wrapper function is to allow
+// a prop to be added to the <AddAuthorForm element
+const AuthorWrapper = withRouter(({ history }) => (
+  <AddAuthorForm
+    onAddAuthor={author => {
+      authors.push(author);
+      history.push("/");
+    }}
+  />
+));
+
+/* const AuthorWrapper = withRouter(({ history }) => (
+  <AddAuthorForm onAddAuthor={onAddAuthor} history={history} />
+)); */
+
+function onAddAuthor(author) {
+  console.log("authors before = ", authors);
+  authors.push(author);
+  console.log("authors after = ", authors);
+}
+
 function render() {
   ReactDOM.render(
     <BrowserRouter>
       <React.Fragment>
         <Route exact path="/" component={App} />
-        <Route path="/add" component={AddAuthorForm} />
+        <Route path="/add" component={AuthorWrapper} />
       </React.Fragment>
     </BrowserRouter>,
     document.getElementById("root")
