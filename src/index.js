@@ -73,14 +73,10 @@ const AuthorWrapper = withRouter(({ history }) => (
   />
 ));
 
-/* const AuthorWrapper = withRouter(({ history }) => (
-  <AddAuthorForm onAddAuthor={onAddAuthor} history={history} />
-)); */
-
 function onAddAuthor(author) {
-  console.log("authors before = ", authors);
+  //console.log("authors before = ", authors);
   authors.push(author);
-  console.log("authors after = ", authors);
+  //console.log("authors after = ", authors);
 }
 
 function render() {
