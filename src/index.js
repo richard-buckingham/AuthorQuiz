@@ -9,7 +9,7 @@ import "./index.css";
 
 // my components
 import AuthorQuiz from "./AuthorQuiz";
-import AddAuthorForm from "./components/AddAuthorForm";
+import AddAuthorForm from "./components/add-author-form/AddAuthorForm";
 
 const authors = [
   {
