@@ -52,14 +52,27 @@ const authors = [
   }
 ];
 
-const state = {
-  turnData: getTurnData(authors),
-  highlight: ""
-};
+function resetState() {
+  return {
+    turnData: getTurnData(authors),
+    highlight: ""
+  };
+}
+
+let state = resetState();
 
 // Create an App react component to render our application
 function App() {
-  return <AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />;
+  return (
+    <AuthorQuiz
+      {...state}
+      onAnswerSelected={onAnswerSelected}
+      onContinue={() => {
+        state = resetState();
+        render();
+      }}
+    />
+  );
 }
 
 // The sole purpose of this wrapper function is to allow
@@ -67,17 +80,13 @@ function App() {
 const AuthorWrapper = withRouter(({ history }) => (
   <AddAuthorForm
     onAddAuthor={author => {
+      console.log("authors before = ", authors);
       authors.push(author);
+      console.log("authors after = ", authors);
       history.push("/");
     }}
   />
 ));
-
-function onAddAuthor(author) {
-  //console.log("authors before = ", authors);
-  authors.push(author);
-  //console.log("authors after = ", authors);
-}
 
 function render() {
   ReactDOM.render(

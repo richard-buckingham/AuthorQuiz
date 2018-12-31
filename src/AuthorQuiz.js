@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import logo from "./logo.svg";
 import "./AuthorQuiz.css";
 import "./bootstrap.min.css";
 
@@ -11,7 +10,7 @@ import Turn from "./components/Turn";
 import Continue from "./components/Continue";
 import Footer from "./components/Footer";
 
-function AuthorQuiz({ turnData, highlight, onAnswerSelected }) {
+function AuthorQuiz({ turnData, highlight, onAnswerSelected, onContinue }) {
   //console.log("turnData = ", turnData);
   return (
     <div className="container-fluid">
@@ -21,7 +20,7 @@ function AuthorQuiz({ turnData, highlight, onAnswerSelected }) {
         highlight={highlight}
         onAnswerSelected={onAnswerSelected}
       />
-      <Continue />
+      <Continue show={highlight === "correct"} onContinue={onContinue} />
       <p>
         <Link to="/add">Add an author...</Link>
       </p>

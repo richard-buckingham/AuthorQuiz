@@ -10,3 +10,8 @@
 .AddAuthorForm__input > label {
   display: block;
 }
+
+.continue {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
