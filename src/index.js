@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, withRouter } from "react-router-dom";
+import * as Redux from "redux";
+import * as ReactRedux from "react-redux";
 
 import registerServiceWorker from "./registerServiceWorker";
 import { shuffle, sample } from "underscore";
@@ -59,7 +61,8 @@ function resetState() {
   };
 }
 
-let state = resetState();
+// create the redux store
+let store = Redux.createStore(reducer);
 
 // Create an App react component to render our application
 function App() {
